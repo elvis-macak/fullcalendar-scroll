@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='fullcalendar.css' rel='stylesheet' />
+<script src='moment.js'></script>
+<script src='jquery.js'></script>
+<script src='fullcalendar.js'></script>
+<script>
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next',
+				center: 'title',
+				right: ''
+			},
+      defaultView: 'monthScroll',
+			editable: true,
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2015-09-01'
+				}
+			]
+		});
+
+    $('window').scroll(function(){console.log(0)})
+    $('#calendar').scroll(function(){console.log(1)})
+    $('#calendar .fc-view-container').scroll(function(){console.log(2)})
+    $('#calendar').bind('scroll', function() {
+      console.log('1');
+      if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight)
+      {
+        alert('end reached');
+      }
+    })
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>
